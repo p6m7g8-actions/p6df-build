@@ -18,6 +18,7 @@ runs:
       shell: bash
       run: |
         . ./p6common/init.zsh
+        set -x
         mod=$(echo "$GITHUB_REPOSITORY" | awk -F/ '{print $2}' | awk -F'-' '{print $2}')
         zsh -c "p6df::modules::p6common::gha::ModuleDeps $mod"
     - name: Test
