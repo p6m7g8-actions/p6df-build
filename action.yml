@@ -5,12 +5,12 @@ runs:
   using: "composite"
   steps:
     - name: Checkout code
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@v5.0.0
     - name: Install zsh
       shell: bash
       run: sudo apt-get update; sudo apt-get install time zsh -y
     - name: Checkout code
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@v5.0.0
       with:
         repository: p6m7g8-dotfiles/p6common
         path: p6common
