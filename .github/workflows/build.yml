@@ -9,5 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: No-op
-        run: echo "This workflow intentionally does nothing and always passes."
+      - name: Checkout repository
+        uses: actions/checkout@v5.0.0
+
+      - name: Mock Build Test
+        uses: ./ # use the local action from this repository
