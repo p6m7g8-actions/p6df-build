@@ -5,7 +5,9 @@
 
 ## Usage
 
-```yml
+```yaml
       - name: Build
         uses: p6m7g8-actions/p6df-build@main
+        with:
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
 ```
