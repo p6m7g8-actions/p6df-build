@@ -1,19 +1,33 @@
 name: "P6 GHA: Builds a p6df- plugin"
 description: "P6 GHA: Builds a p6df- plugin"
 author: "Philip M. Gollucci"
+
+inputs:
+  gh_token:
+    description: "GitHub Token"
+    required: true
+
 runs:
   using: "composite"
   steps:
     - name: Checkout code
       uses: actions/checkout@v5.0.0
-    - name: Install zsh
+
+    - name: Generic Build Steps
+      uses: p6m7g8-actions/p6-build@main
+      with:
+        gh_token: ${{ inputs.gh_token }}
+
+    - name: Install zsh & time
       shell: bash
-      run: sudo apt-get update; sudo apt-get install time zsh -y
-    - name: Checkout code
+      run: sudo apt-get update && sudo apt-get install -y zsh time
+
+    - name: Checkout p6common
       uses: actions/checkout@v5.0.0
       with:
         repository: p6m7g8-dotfiles/p6common
         path: p6common
+
     - name: Dependant Repositories
       shell: bash
       run: |
@@ -23,6 +37,7 @@ runs:
         mod=$(echo "$GITHUB_REPOSITORY" | awk -F/ '{print $2}' | awk -F'-' '{print $2}')
         zsh -c ". ./p6common/init.zsh; p6df::modules::p6common::gha::ModuleDeps $mod"
         set +x
+
     - name: Test
       shell: bash
       env:
