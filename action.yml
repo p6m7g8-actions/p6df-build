@@ -6,6 +6,10 @@ inputs:
   gh_token:
     description: "GitHub Token"
     required: true
+  shellcheck:
+    description: "Run shellcheck (true/false)"
+    required: false
+    default: "true"
 
 runs:
   using: "composite"
@@ -17,6 +21,7 @@ runs:
       uses: p6m7g8-actions/p6-build@main
       with:
         gh_token: ${{ inputs.gh_token }}
+        shellcheck: ${{ inputs.shellcheck }}
 
     - name: Install zsh & time
       shell: bash
