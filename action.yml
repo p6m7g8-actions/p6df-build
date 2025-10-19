@@ -48,4 +48,4 @@ runs:
       env:
         P6_DFZ_SRC_P6M7G8_DOTFILES_DIR: .
         TERM: xterm
-      run: zsh -e p6common/bin/p6ctl test
+      run: zsh -xe p6common/bin/p6ctl test
