@@ -15,7 +15,7 @@ runs:
   using: "composite"
   steps:
     - name: Checkout code
-      uses: actions/checkout@v5.0.0
+      uses: actions/checkout@v6.0.1
 
     - name: Generic Build Steps
       uses: p6m7g8-actions/p6-build@main
@@ -28,7 +28,7 @@ runs:
       run: sudo apt-get update && sudo apt-get install -y zsh time
 
     - name: Checkout p6common
-      uses: actions/checkout@v5.0.0
+      uses: actions/checkout@v6.0.1
       with:
         repository: p6m7g8-dotfiles/p6common
         path: p6common
@@ -37,11 +37,8 @@ runs:
       shell: bash
       run: |
         set +e
-        set -x
-        env | sort
         mod=$(echo "$GITHUB_REPOSITORY" | awk -F/ '{n=$2; sub(/^p6df-/, "", n); print n}')
         zsh -c ". ./p6common/init.zsh; p6df::modules::p6common::gha::ModuleDeps $mod"
-        set +x
 
     - name: Test
       shell: bash
