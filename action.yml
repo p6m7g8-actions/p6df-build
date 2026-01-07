@@ -10,6 +10,10 @@ inputs:
     description: "Run shellcheck (true/false)"
     required: false
     default: "true"
+  test:
+    description: "Run t/ tests (true/false)"
+    required: false
+    default: "true"
 
 runs:
   using: "composite"
@@ -44,6 +48,7 @@ runs:
         set +x
 
     - name: Test
+      if: ${{ inputs.test == 'true' }}
       shell: bash
       env:
         P6_DFZ_SRC_P6M7G8_DOTFILES_DIR: .
