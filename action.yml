@@ -10,6 +10,10 @@ inputs:
     description: "Run shellcheck (true/false)"
     required: false
     default: "true"
+  shellcheck_ignore_paths:
+    description: "Space-separated paths/globs to skip in shellcheck"
+    required: false
+    default: ""
   test:
     description: "Run t/ tests (true/false)"
     required: false
@@ -30,6 +34,7 @@ runs:
       with:
         gh_token: ${{ inputs.gh_token }}
         shellcheck: ${{ inputs.shellcheck }}
+        shellcheck_ignore_paths: ${{ inputs.shellcheck_ignore_paths }}
 
     - name: Checkout p6common
       uses: p6m7g8-actions/checkout@main
