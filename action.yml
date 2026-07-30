@@ -45,9 +45,7 @@ runs:
     - name: Dependant Repositories
       shell: bash
       run: |
-        set +e
         set -x
-        env | sort
         mod=$(echo "$GITHUB_REPOSITORY" | awk -F/ '{n=$2; sub(/^p6df-/, "", n); print n}')
         zsh -c ". ./p6common/init.zsh; p6df::modules::p6common::gha::ModuleDeps $mod"
         set +x
