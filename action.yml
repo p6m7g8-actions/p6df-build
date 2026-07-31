@@ -23,21 +23,21 @@ runs:
   using: "composite"
   steps:
     - name: Checkout code
-      uses: p6m7g8-actions/checkout@main
+      uses: p6m7g8-actions/gh-repo-checkout@main
 
     - name: Install zsh & time
       shell: bash
       run: sudo apt-get update && sudo apt-get install -y zsh time
 
     - name: Generic Build Steps
-      uses: p6m7g8-actions/p6-build@main
+      uses: p6m7g8-actions/p6-repo-build@main
       with:
         gh_token: ${{ inputs.gh_token }}
         shellcheck: ${{ inputs.shellcheck }}
         shellcheck_ignore_paths: ${{ inputs.shellcheck_ignore_paths }}
 
     - name: Checkout p6common
-      uses: p6m7g8-actions/checkout@main
+      uses: p6m7g8-actions/gh-repo-checkout@main
       with:
         repository: p6m7g8-dotfiles/p6common
         path: p6common
